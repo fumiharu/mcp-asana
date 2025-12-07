@@ -80,11 +80,13 @@ class AsanaClient:
                     due_on: Optional[str] = None,
                     notes: Optional[str] = None) -> Dict[str, Any]:
         """Create a new task."""
-        body = {"data": {
-            "name": name,
-            "notes": notes,
-            "due_on": due_on
-        }}
+        data = {"name": name}
+        if notes:
+            data["notes"] = notes
+        if due_on:
+            data["due_on"] = due_on
+
+        body = {"data": data}
 
         if project_id:
             body["data"]["projects"] = [str(project_id)]

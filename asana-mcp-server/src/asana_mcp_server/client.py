@@ -73,24 +73,26 @@ class AsanaClient:
             'query': query,
             'opt_fields': "gid,name,completed,due_on,projects.name"
         }
-        return list(typeahead_api.typeahead_for_workspace(workspace_id, opts))
+        return list(typeahead_api.typeahead_for_workspace(workspace_id, 'task', opts))
 
     def create_task(self, name: str, project_id: Optional[str] = None,
                     workspace_id: Optional[str] = None,
                     due_on: Optional[str] = None,
                     notes: Optional[str] = None) -> Dict[str, Any]:
         """Create a new task."""
-        body = {"data": {
-            "name": name,
-            "notes": notes,
-            "due_on": due_on
-        }}
+        data = {"name": name}
+        if notes:
+            data["notes"] = notes
+        if due_on:
+            data["due_on"] = due_on
+
+        body = {"data": data}
 
         if project_id:
-            body["data"]["projects"] = [project_id]
+            body["data"]["projects"] = [str(project_id)]
 
         if workspace_id and not project_id:
-            body["data"]["workspace"] = workspace_id
+            body["data"]["workspace"] = str(workspace_id)
         elif not workspace_id and not project_id:
              # Default to first workspace
              me = self.get_me()

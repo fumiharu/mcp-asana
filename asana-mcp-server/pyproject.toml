@@ -1,0 +1,20 @@
+[project]
+name = "asana-mcp-server"
+version = "0.1.0"
+description = "MCP Server for Asana"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp",
+    "asana"
+]
+
+[project.scripts]
+asana-mcp-server = "asana_mcp_server.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/asana_mcp_server"]

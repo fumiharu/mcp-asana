@@ -24,6 +24,14 @@ To run the server locally for development or testing:
    ASANA_ACCESS_TOKEN=your_asana_pat_here python -m asana_mcp_server
    ```
 
+## Debugging with MCP Inspector
+
+To test the server using the MCP Inspector web interface:
+
+```bash
+ASANA_ACCESS_TOKEN=your_asana_pat_here npx @modelcontextprotocol/inspector python -m asana_mcp_server
+```
+
 ## Usage
 
 Add this to your `claude_desktop_config.json`:

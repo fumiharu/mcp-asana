@@ -6,6 +6,24 @@ An MCP server to interact with Asana.
 
 You need an Asana Personal Access Token (PAT).
 
+## Running Locally
+
+To run the server locally for development or testing:
+
+1. Install dependencies:
+   ```bash
+   pip install .
+   ```
+   Or for development:
+   ```bash
+   pip install -e .
+   ```
+
+2. Run the server with your Asana PAT:
+   ```bash
+   ASANA_ACCESS_TOKEN=your_asana_pat_here python -m asana_mcp_server
+   ```
+
 ## Usage
 
 Add this to your `claude_desktop_config.json`:

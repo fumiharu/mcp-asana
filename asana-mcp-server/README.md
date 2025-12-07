@@ -37,15 +37,5 @@ ASANA_ACCESS_TOKEN=your_asana_pat_here npx @modelcontextprotocol/inspector pytho
 Add this to your `claude_desktop_config.json`:
 
 ```json
-{
-  "mcpServers": {
-    "asana": {
-      "command": "python",
-      "args": ["-m", "asana_mcp_server"],
-      "env": {
-        "ASANA_ACCESS_TOKEN": "your_asana_pat_here"
-      }
-    }
-  }
-}
+TBD
 ```

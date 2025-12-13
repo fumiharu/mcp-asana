@@ -6,23 +6,47 @@ An MCP server to interact with Asana.
 
 You need an Asana Personal Access Token (PAT).
 
-## Running Locally
+## ローカル環境の構築と実行 (Running Locally)
 
-To run the server locally for development or testing:
+開発やテストのためにローカル環境を構築する手順は以下の通りです。
 
-1. Install dependencies:
-   ```bash
-   pip install .
-   ```
-   Or for development:
-   ```bash
-   pip install -e .
-   ```
+### 1. 仮想環境の作成と有効化
 
-2. Run the server with your Asana PAT:
-   ```bash
-   ASANA_ACCESS_TOKEN=your_asana_pat_here python -m asana_mcp_server
-   ```
+Pythonの仮想環境（venv）を作成し、プロジェクトごとの依存関係を管理することを推奨します。
+
+```bash
+# 仮想環境(.venv)の作成
+python -m venv .venv
+```
+
+作成した仮想環境を有効化します。
+
+**macOS / Linux:**
+```bash
+source .venv/bin/activate
+```
+
+**Windows:**
+```bash
+.venv\Scripts\activate
+```
+
+### 2. 依存関係のインストール
+
+仮想環境が有効になった状態で、パッケージをインストールします。
+開発用に変更を即座に反映させるため、`-e` (editable) オプション付きでインストールします。
+
+```bash
+pip install -e .
+```
+
+### 3. サーバーの実行
+
+AsanaのPersonal Access Token (PAT) を環境変数に設定してサーバーを起動します。
+
+```bash
+ASANA_ACCESS_TOKEN=your_asana_pat_here python -m asana_mcp_server
+```
 
 ## Debugging with MCP Inspector
 

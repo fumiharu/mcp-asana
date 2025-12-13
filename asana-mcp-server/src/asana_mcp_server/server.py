@@ -12,8 +12,8 @@ from mcp.types import (
 from .client import AsanaClient
 import os
 
-# Initialize Asana Client
-# We'll initialize it lazily or check env var at startup
+# Asanaクライアントを初期化
+# 遅延初期化を行うか、起動時に環境変数を確認します
 asana_client = None
 
 def get_client():
@@ -28,12 +28,12 @@ async def serve():
     @server.list_resources()
     async def handle_list_resources() -> List[Resource]:
         """
-        List available resources.
-        Since we don't know all tasks ahead of time, we might list workspaces or top projects?
-        For now, we can perhaps list the user's active workspaces/projects as 'roots'.
-        But dynamic resources like `asana://tasks/{id}` don't need to be returned in list_resources
-        unless they are 'discoverable'.
-        Let's list the user's workspaces as a starting point.
+        利用可能なリソースを一覧表示します。
+        すべてのタスクを事前に把握することはできないため、ワークスペースやトッププロジェクトを一覧表示する可能性があります。
+        現時点では、ユーザーのアクティブなワークスペース/プロジェクトを「ルート」として一覧表示します。
+        ただし、`asana://tasks/{id}`のような動的リソースは、「発見可能」である必要がない限り、
+        list_resourcesで返す必要はありません。
+        出発点としてユーザーのワークスペースを一覧表示しましょう。
         """
         client = get_client()
         workspaces = client.get_workspaces()
@@ -52,11 +52,11 @@ async def serve():
     @server.read_resource()
     async def handle_read_resource(uri: str) -> str:
         """
-        Read a specific resource.
-        Supported schemes:
-        - asana://tasks/{task_id} -> Returns task details text
-        - asana://projects/{project_id}/tasks -> Returns list of tasks in project
-        - asana://workspaces/{workspace_id}/tasks -> Returns list of tasks in workspace (assigned to me?)
+        特定のリソースを読み込みます。
+        サポートされているスキーム:
+        - asana://tasks/{task_id} -> タスクの詳細テキストを返します
+        - asana://projects/{project_id}/tasks -> プロジェクト内のタスク一覧を返します
+        - asana://workspaces/{workspace_id}/tasks -> ワークスペース内のタスク一覧（自分に割り当てられたもの？）を返します
         """
         client = get_client()
         parsed_uri = str(uri)
@@ -212,7 +212,7 @@ async def serve():
         except Exception as e:
             return [TextContent(type="text", text=f"Error: {str(e)}")]
 
-    # Run the server using stdio
+    # stdioを使用してサーバーを実行
     from mcp.server.stdio import stdio_server
 
     async with stdio_server() as (read_stream, write_stream):

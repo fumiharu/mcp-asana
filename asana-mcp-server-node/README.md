@@ -358,6 +358,46 @@ This will open a web UI where you can test the server's resources and tools.
 - **Conditional Fields**: Only includes optional fields in API calls when provided
 - **Error Wrapping**: Catches exceptions and returns as text content to avoid protocol errors
 
+## Debugging and Logging
+
+### ローカル環境でのログ確認
+
+MCPサーバーのログを確認するために、ロギング機能を有効にした起動スクリプトを使用できます。
+
+#### ロギング設定
+
+`.mcp.json`ファイルまたはClaude Desktopの設定ファイルで、通常のnodeコマンドの代わりに`run-with-logging.sh`を使用するように設定:
+
+```json
+{
+  "mcpServers": {
+    "asana-fumiharu": {
+      "command": "/absolute/path/to/asana-mcp-server-node/run-with-logging.sh",
+      "args": [],
+      "env": {
+        "ASANA_ACCESS_TOKEN": "your_token_here"
+      }
+    }
+  }
+}
+```
+
+`run-with-logging.sh`スクリプトは、サーバーのエラー出力（stderr）を`mcp-server.log`ファイルにリダイレクトします。
+
+#### ログの確認
+
+サーバーのエラーログはプロジェクトルートの`mcp-server.log`ファイルに出力されます。以下のコマンドでリアルタイムにログを確認できます:
+
+```bash
+tail -f mcp-server.log
+```
+
+これにより、MCPサーバーの動作やエラーをリアルタイムで監視できます。トラブルシューティングや開発時のデバッグに便利です。
+
+**ログファイルの場所**: プロジェクトルート（例: `/Users/yourname/dev/mcp-asana/mcp-server.log`）
+
+**注意**: `run-with-logging.sh`内のパスは絶対パスで記述されているため、環境に合わせて修正が必要な場合があります。
+
 ## Troubleshooting
 
 ### "ASANA_ACCESS_TOKEN environment variable is required"

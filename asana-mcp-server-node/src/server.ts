@@ -265,6 +265,12 @@ export async function serve(): Promise<void> {
     const { name, arguments: args } = request.params;
     const client = getClient();
 
+    // ログ: リクエスト情報
+    console.error('=== MCP Tool Call ===');
+    console.error('Tool:', name);
+    console.error('Arguments:', JSON.stringify(args, null, 2));
+    console.error('Timestamp:', new Date().toISOString());
+
     try {
       let result: any;
 
@@ -330,6 +336,10 @@ export async function serve(): Promise<void> {
           throw new Error(`Unknown tool: ${name}`);
       }
 
+      // ログ: レスポンス情報
+      console.error('Result:', JSON.stringify(result, null, 2));
+      console.error('=== End MCP Tool Call ===\n');
+
       return {
         content: [
           {
@@ -340,6 +350,11 @@ export async function serve(): Promise<void> {
       };
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
+
+      // ログ: エラー情報
+      console.error('Error:', errorMessage);
+      console.error('=== End MCP Tool Call (Error) ===\n');
+
       return {
         content: [
           {

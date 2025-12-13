@@ -1,0 +1,11 @@
+{
+	"mcpServers": {
+        "asana-fumiharu": {
+            "command": "/absolute/path/to/mcp-asana/asana-mcp-server-node/run-with-logging.sh",
+            "args": [],
+            "env": {
+                "ASANA_ACCESS_TOKEN": "your_asana_access_token_here"
+            }
+        }
+	}
+}

@@ -28,6 +28,7 @@ source .venv/bin/activate
 開発用に変更を即座に反映させるため、`-e` (editable) オプション付きでインストールします。
 
 ```bash
+cd mcp-asana/asana-mcp-server
 pip install -e .
 ```
 

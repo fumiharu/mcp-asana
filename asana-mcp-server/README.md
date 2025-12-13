@@ -48,11 +48,12 @@ AsanaのPersonal Access Token (PAT) を環境変数に設定してサーバー�
 ASANA_ACCESS_TOKEN=your_asana_pat_here python -m asana_mcp_server
 ```
 
-## Debugging with MCP Inspector
+## MCP Inspector を使ったデバッグ (Debugging with MCP Inspector)
 
-To test the server using the MCP Inspector web interface:
+MCP Inspector (Webインターフェース) を使ってサーバーをテストする場合も、**事前にPythonの仮想環境を有効化**する必要があります。
 
 ```bash
+# 仮想環境を有効化した状態で実行してください
 ASANA_ACCESS_TOKEN=your_asana_pat_here npx @modelcontextprotocol/inspector python -m asana_mcp_server
 ```
 

@@ -17,18 +17,9 @@ Pythonの仮想環境（venv）を作成し、プロジェクトごとの依存�
 ```bash
 # 仮想環境(.venv)の作成
 python -m venv .venv
-```
 
-作成した仮想環境を有効化します。
-
-**macOS / Linux:**
-```bash
+# 仮想環境の有効化
 source .venv/bin/activate
-```
-
-**Windows:**
-```bash
-.venv\Scripts\activate
 ```
 
 ### 2. 依存関係のインストール

@@ -105,24 +105,6 @@ npm run build
 }
 ```
 
-**セキュリティ上の注意**: プロジェクト固有の設定を使用する場合、アクセストークンをバージョン管理にコミットしないよう注意してください。環境変数を使用することを推奨します：
-
-```json
-{
-  "claude.mcpServers": {
-    "asana": {
-      "command": "node",
-      "args": [
-        "/absolute/path/to/asana-mcp-server-node/dist/index.js"
-      ],
-      "env": {
-        "ASANA_ACCESS_TOKEN": "${env:ASANA_ACCESS_TOKEN}"
-      }
-    }
-  }
-}
-```
-
 シェルで環境変数を設定:
 ```bash
 export ASANA_ACCESS_TOKEN="your_token_here"
